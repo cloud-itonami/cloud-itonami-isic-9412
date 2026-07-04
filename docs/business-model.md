@@ -2,7 +2,7 @@
 
 ## Classification
 
-- Repository: `cloud-itonami-9412`
+- Repository: `cloud-itonami-isic-9412`
 - ISIC Rev.5: `9412`
 - Activity: activities of professional membership organizations -- representing licensed/credentialed professionals and setting professional standards
 - Social impact: community access, data sovereignty, transparent audit

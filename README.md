@@ -1,4 +1,4 @@
-# cloud-itonami-9412
+# cloud-itonami-isic-9412
 
 Open Business Blueprint for **ISIC Rev.5 9412**: Activities of professional membership organizations.
 

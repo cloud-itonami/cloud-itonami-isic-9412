@@ -1,6 +1,6 @@
 # Governance
 
-`cloud-itonami-9412` is an OSS open-business blueprint for activities of professional membership organizations -- representing licensed/credentialed professionals and setting professional standards.
+`cloud-itonami-isic-9412` is an OSS open-business blueprint for activities of professional membership organizations -- representing licensed/credentialed professionals and setting professional standards.
 Governance covers both the capability layer and the operator model.
 
 ## Maintainers
