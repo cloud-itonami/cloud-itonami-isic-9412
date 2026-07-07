@@ -31,6 +31,12 @@
 ## Trust Controls
 
 - no certification is issued and no disciplinary referral is finalized without human sign-off
-- a fabricated credential-verification forces a hold, not an override
-- every certification/discipline path is auditable
+- a fabricated jurisdiction citation, incomplete evidence, insufficient
+  continuing-education hours, or an unresolved ethics complaint --
+  each forces a hold, not an override
+- a member's certification or disciplinary referral cannot be
+  finalized twice: a double-finalization attempt is held off this
+  actor's own member facts alone, with no upstream comparison needed
+- every intake, assessment, screening, certification and disciplinary-
+  referral path is auditable
 - emergency manual override paths remain outside LLM control
