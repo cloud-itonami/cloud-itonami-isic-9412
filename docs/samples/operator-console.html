@@ -1,0 +1,81 @@
+<html><head><meta charset="utf-8"><title>cloud-itonami-isic-9412 &middot; activities of professional membership organizations</title><style>
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.ok { color: #137a3f; }
+body { font-family: system-ui,-apple-system,sans-serif; margin: 0; color: #1a1a1a; background: #fafafa; }
+header.bar { display: flex; align-items: center; gap: 12px; padding: 12px 20px; background: #fff; border-bottom: 1px solid #e5e5e5; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #f0f0f0; }
+h2 { margin-top: 0; font-size: 15px; }
+.warn { color: #b25c00; background: #fff8e1; padding: 2px 6px; border-radius: 4px; }
+main { max-width: 980px; margin: 24px auto; padding: 0 20px; }
+header.bar h1 { font-size: 18px; margin: 0; font-weight: 600; }
+.muted { color: #888; font-size: 13px; }
+.critical { color: #fff; background: #b3261e; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+.card { background: #fff; border: 1px solid #e5e5e5; border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+.err { color: #b3261e; background: #fbe9e7; padding: 2px 6px; border-radius: 4px; }
+th { font-weight: 600; color: #555; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+header.bar .badge { margin-left: auto; font-size: 12px; color: #666; }
+code { font-size: 12px; background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+</style></head><body>
+<header class="bar">
+  <h1>Activities of professional membership organizations (ISIC 9412) — Operator Console</h1>
+  <span class="badge">read-only sample · governor-gated · certification issuance/disciplinary referral always human-approved</span>
+</header>
+<main>
+  <section class="card">
+    <h2>Members</h2>
+    <p class="muted">Demo snapshot — build-time-generated from <code>association.store</code> via <code>association.render-html</code> (<code>clojure -M:dev:render-html</code>), regenerated nightly.</p>
+    <table>
+      <thead><tr><th>Member</th><th>Name</th><th>Jurisdiction</th><th>CE hours (completed/required)</th><th>Ethics complaint</th><th>Certification / Discipline</th><th>Last op status</th></tr></thead>
+      <tbody>
+        <tr><td>member-1</td><td>Sakura Tanaka</td><td>JPN</td><td>40 / 30</td><td><span class="ok">clear</span></td><td>certified / disciplined</td><td><span class="ok">committed</span></td></tr>
+        <tr><td>member-2</td><td>Atlantis Doe</td><td>ATL</td><td>40 / 30</td><td><span class="ok">clear</span></td><td>not certified / not disciplined</td><td><span class="critical">HARD hold &middot; no-spec-basis</span></td></tr>
+        <tr><td>member-3</td><td>鈴木一郎</td><td>JPN</td><td>20 / 30</td><td><span class="ok">clear</span></td><td>not certified / not disciplined</td><td><span class="critical">HARD hold &middot; continuing-education-insufficient</span></td></tr>
+        <tr><td>member-4</td><td>田中花子</td><td>JPN</td><td>40 / 30</td><td><span class="critical">unresolved</span></td><td>not certified / not disciplined</td><td><span class="critical">HARD hold &middot; complaint-unresolved</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+  <section class="card">
+    <h2>Draft certification-issuance / disciplinary-referral-finalization records</h2>
+    <p class="muted">Unsigned drafts only — the association's own act of signing is outside this actor's authority (see README <code>Actuation</code>).</p>
+    <table>
+      <thead><tr><th>Kind</th><th>Record id</th><th>Member</th><th>Jurisdiction</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>certification</td><td>JPN-CRT-000000</td><td>member-1</td><td>JPN</td><td><span class="ok">immutable draft</span></td></tr>
+        <tr><td>discipline</td><td>JPN-DSC-000000</td><td>member-1</td><td>JPN</td><td><span class="ok">immutable draft</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+  <section class="card">
+    <h2>Action gate (Association Governance Governor)</h2>
+    <p class="muted">HARD holds cannot be overridden by a human approver. Jurisdiction spec-basis, continuing-education-hours sufficiency, evidence completeness and unresolved ethics complaints are independently recomputed, never trusted from the advisor's proposal; a real certification issuance or disciplinary-referral finalization is always a human association officer's call, at every rollout phase.</p>
+    <table>
+      <thead><tr><th>Op</th><th>Gate</th></tr></thead>
+      <tbody>
+        <tr><td><code>:member/intake</code></td><td><span class="ok">phase-3 auto-commit when clean, no capital risk yet -- the ONLY auto-eligible op in this domain</span></td></tr>
+        <tr><td><code>:jurisdiction/assess</code></td><td><span class="warn">ALWAYS human approval &middot; spec-basis independently checked against <code>association.facts</code>, never fabricated</span></td></tr>
+        <tr><td><code>:complaint/screen</code></td><td><span class="warn">ALWAYS human approval when clean &middot; an unresolved ethics complaint is a HARD, un-overridable hold instead</span></td></tr>
+        <tr><td><code>:certification/issue</code></td><td><span class="warn">ALWAYS human approval &middot; real professional-record act (actuation/issue-certification) &middot; CE-hours sufficiency + double-certification guard independently enforced, never auto at any phase</span></td></tr>
+        <tr><td><code>:discipline/finalize</code></td><td><span class="warn">ALWAYS human approval &middot; real professional-record act (actuation/finalize-disciplinary-referral) &middot; evidence-completeness + double-referral guard enforced, never auto at any phase</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+  <section class="card">
+    <h2>Audit ledger (this run)</h2>
+    <p class="muted">Append-only decision-fact log — every proposal, hold and commit this scenario produced.</p>
+    <table>
+      <thead><tr><th>Fact</th><th>Op</th><th>Subject</th><th>Basis</th></tr></thead>
+      <tbody>
+        <tr><td>committed</td><td><code>intake</code></td><td>member-1</td><td>id, member-name</td></tr>
+        <tr><td>committed</td><td><code>assess</code></td><td>member-1</td><td>公益社団法人及び公益財団法人の認定等に関する法律 (Act on Authorization of Public Interest Incorporated Associations and Foundations), https://www.koeki-info.go.jp/</td></tr>
+        <tr><td>committed</td><td><code>screen</code></td><td>member-1</td><td>complaint-check</td></tr>
+        <tr><td>committed</td><td><code>issue</code></td><td>member-1</td><td>member-1</td></tr>
+        <tr><td>committed</td><td><code>finalize</code></td><td>member-1</td><td>member-1</td></tr>
+        <tr><td>governor-hold</td><td><code>assess</code></td><td>member-2</td><td>no-spec-basis</td></tr>
+        <tr><td>committed</td><td><code>assess</code></td><td>member-3</td><td>公益社団法人及び公益財団法人の認定等に関する法律 (Act on Authorization of Public Interest Incorporated Associations and Foundations), https://www.koeki-info.go.jp/</td></tr>
+        <tr><td>governor-hold</td><td><code>issue</code></td><td>member-3</td><td>continuing-education-insufficient</td></tr>
+        <tr><td>governor-hold</td><td><code>screen</code></td><td>member-4</td><td>complaint-unresolved</td></tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+</body></html>
