@@ -30,7 +30,20 @@
   Accreditation Board (which accredits certification bodies under
   ISO/IEC 17024), the UK Professional Standards Authority (which
   accredits registers of practitioners in non-statutorily-regulated
-  professions), and Germany's federated Kammer (chamber) system.")
+  professions), and Germany's federated Kammer (chamber) system.
+
+  The Netherlands (NLD) is the fifth seeded jurisdiction, cited for the
+  SAME accreditation-framework reason USA's ANAB is: Raad voor
+  Accreditatie (RvA, the Dutch Accreditation Council) accredits
+  conformity-assessment bodies -- including ISO/IEC 17024 personnel-
+  certification bodies, the same standard ANAB accredits under -- and
+  was designated by the Dutch government in 2010 as the Netherlands'
+  national accreditation body under Regulation (EC) No 765/2008 (the
+  EU regulation setting out accreditation and market-surveillance
+  requirements). RvA is itself a zelfstandig bestuursorgaan
+  (independent administrative body) accountable to the Minister of
+  Economic Affairs and Climate Policy, per RvA's own official
+  description of its role.")
 
 (def catalog
   "iso3 -> requirement map. `:required-evidence` mirrors the generic
@@ -74,7 +87,16 @@
           :required-evidence ["Mitgliedsregistrierung (member-registration record)"
                               "Konformitätsnachweis (standards-conformance certificate)"
                               "Beschwerdeverfahrensdokument (complaints-procedure document)"
-                              "Offenlegungsbericht (governance-disclosure document)"]}})
+                              "Offenlegungsbericht (governance-disclosure document)"]}
+   "NLD" {:name "Netherlands"
+          :owner-authority "Raad voor Accreditatie (RvA, Dutch Accreditation Council)"
+          :legal-basis "Regulation (EC) No 765/2008 (accreditation and market-surveillance requirements); RvA designated as the Netherlands' national accreditation body in 2010"
+          :national-spec "RvA accredits conformity-assessment bodies, including ISO/IEC 17024 personnel-certification bodies; RvA is a zelfstandig bestuursorgaan (independent administrative body) accountable to the Minister of Economic Affairs and Climate Policy"
+          :provenance "https://www.rva.nl/en/about-the-rva/"
+          :required-evidence ["Member-registration record"
+                              "Standards-conformance certificate"
+                              "Complaints-procedure document"
+                              "Governance-disclosure document"]}})
 
 (defn spec-basis
   "The jurisdiction's requirement map, or nil -- nil means NO spec-basis,
