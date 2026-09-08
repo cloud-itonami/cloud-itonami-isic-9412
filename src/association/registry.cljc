@@ -31,7 +31,7 @@
   or finalizing the disciplinary referral itself (that is
   `association.operation`'s `:certification/issue`/`:discipline/
   finalize`, always human-gated -- see README `Actuation`)."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (defn- unsigned-certificate
   "Every certificate this actor produces is UNSIGNED -- signature is the
@@ -73,7 +73,7 @@
     (throw (ex-info "certification-issuance: jurisdiction required" {})))
   (when (< sequence 0)
     (throw (ex-info "certification-issuance: sequence must be >= 0" {})))
-  (let [certification-number (str (str/upper-case jurisdiction) "-CRT-" (zero-pad sequence 6))
+  (let [certification-number (str (str/upper jurisdiction) "-CRT-" (zero-pad sequence 6))
         record {"record_id" certification-number
                 "kind" "certification-issuance-draft"
                 "member_id" member-id
@@ -98,7 +98,7 @@
     (throw (ex-info "disciplinary-referral-finalization: jurisdiction required" {})))
   (when (< sequence 0)
     (throw (ex-info "disciplinary-referral-finalization: sequence must be >= 0" {})))
-  (let [referral-number (str (str/upper-case jurisdiction) "-DSC-" (zero-pad sequence 6))
+  (let [referral-number (str (str/upper jurisdiction) "-DSC-" (zero-pad sequence 6))
         record {"record_id" referral-number
                 "kind" "disciplinary-referral-finalization-draft"
                 "member_id" member-id
