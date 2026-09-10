@@ -171,7 +171,7 @@ statement.
   deliberate domain reasoning, rather than reflexively applying to
   both.
 - (+) The actuation invariant (governor + phase, two layers) is
-  regression-tested by `test/association/phase_test.clj`'s
+  regression-tested by `test/association/phase_test.kotoba`'s
   `certification-issue-never-auto-at-any-phase`/`discipline-finalize-
   never-auto-at-any-phase`.
 - (+) `MemStore` ‖ `DatomicStore` parity is proven by `test/

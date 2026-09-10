@@ -94,7 +94,7 @@ independent layers enforce this (`association.governor`'s
 referral` high-stakes gate and `association.phase`'s phase table,
 which never puts `:certification/issue`/`:discipline/finalize` in any
 phase's `:auto` set) -- see `association.phase`'s docstring and
-`test/association/phase_test.clj`'s `certification-issue-never-auto-
+`test/association/phase_test.kotoba`'s `certification-issue-never-auto-
 at-any-phase`/`discipline-finalize-never-auto-at-any-phase`. The actor
 may draft, check and recommend; a human association officer is always
 the one who actually issues a certification or finalizes a
@@ -181,14 +181,14 @@ domain capability lib to reference at all.
 
 | File | Role |
 |---|---|
-| `src/association/store.cljc` | **Store** protocol -- `MemStore` ‖ `DatomicStore` (`langchain.db`) + append-only audit ledger + separate certification-issuance/disciplinary-referral-finalization history. No dynamically-filed sub-record -- both actuation ops act directly on a pre-seeded member, and the double-certification/double-discipline guards check dedicated `:certified?`/`:disciplined?` booleans rather than a `:status` value |
-| `src/association/registry.cljc` | Certification-issuance + disciplinary-referral-finalization draft records, plus `continuing-education-hours-insufficient?` -- the FIRST non-temporal instance of this fleet's MINIMUM-threshold sufficiency family (`veterinary`/`funeral`/`hospital` established the first three, all temporal) |
-| `src/association/facts.cljc` | Per-jurisdiction professional-body-governance catalog with an official spec-basis citation per entry, honest coverage reporting |
-| `src/association/assocopsllm.cljc` | **AssocOps-LLM Advisor** -- `mock-advisor` ‖ `llm-advisor`; intake/assessment/complaint-screening/certification-issuance/disciplinary-referral-finalization proposals |
-| `src/association/governor.cljc` | **Association Governance Governor** -- 4 HARD checks (spec-basis · evidence-incomplete · continuing-education-insufficient, pure ground-truth MINIMUM-threshold recompute · complaint-unresolved, unconditional evaluation, the TWENTIETH grounding of this discipline and FIRST specifically for the professional-ethics/conduct-complaint concept) + already-certified/already-disciplined guards + 1 soft (confidence/actuation gate) |
-| `src/association/phase.cljc` | **Phase 0→3** -- read-only → assisted intake → assisted assess → supervised (both certification and disciplinary-referral finalization always human; member intake is the ONLY auto-eligible op, no direct capital risk) |
-| `src/association/operation.cljc` | **OperationActor** -- langgraph-clj StateGraph |
-| `src/association/sim.cljc` | demo driver |
+| `src/association/store.kotoba` | **Store** protocol -- `MemStore` ‖ `DatomicStore` (`langchain.db`) + append-only audit ledger + separate certification-issuance/disciplinary-referral-finalization history. No dynamically-filed sub-record -- both actuation ops act directly on a pre-seeded member, and the double-certification/double-discipline guards check dedicated `:certified?`/`:disciplined?` booleans rather than a `:status` value |
+| `src/association/registry.kotoba` | Certification-issuance + disciplinary-referral-finalization draft records, plus `continuing-education-hours-insufficient?` -- the FIRST non-temporal instance of this fleet's MINIMUM-threshold sufficiency family (`veterinary`/`funeral`/`hospital` established the first three, all temporal) |
+| `src/association/facts.kotoba` | Per-jurisdiction professional-body-governance catalog with an official spec-basis citation per entry, honest coverage reporting |
+| `src/association/assocopsllm.kotoba` | **AssocOps-LLM Advisor** -- `mock-advisor` ‖ `llm-advisor`; intake/assessment/complaint-screening/certification-issuance/disciplinary-referral-finalization proposals |
+| `src/association/governor.kotoba` | **Association Governance Governor** -- 4 HARD checks (spec-basis · evidence-incomplete · continuing-education-insufficient, pure ground-truth MINIMUM-threshold recompute · complaint-unresolved, unconditional evaluation, the TWENTIETH grounding of this discipline and FIRST specifically for the professional-ethics/conduct-complaint concept) + already-certified/already-disciplined guards + 1 soft (confidence/actuation gate) |
+| `src/association/phase.kotoba` | **Phase 0→3** -- read-only → assisted intake → assisted assess → supervised (both certification and disciplinary-referral finalization always human; member intake is the ONLY auto-eligible op, no direct capital risk) |
+| `src/association/operation.kotoba` | **OperationActor** -- langgraph-clj StateGraph |
+| `src/association/sim.kotoba` | demo driver |
 | `test/association/*_test.clj` | governor contract · phase invariants · store parity · registry conformance · facts coverage |
 
 ## Business-process coverage (honest)
