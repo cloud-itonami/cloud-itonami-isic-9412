@@ -1,5 +1,5 @@
 (ns association.sim
-  "Demo driver -- `clojure -M:dev:run`. Walks a clean member through
+  "Demo driver -- `kbb -M:dev:run`. Walks a clean member through
   intake -> jurisdiction assessment -> ethics-complaint screening ->
   certification-issuance proposal (always escalates) -> human approval
   -> commit, then through disciplinary-referral-finalization proposal
