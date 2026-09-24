@@ -1,0 +1,33 @@
+;; What this vertical's robot physically does, declared for
+;; kotoba.robotics.process (kotoba-lang/robotics). `kbb -M:dev:physics` runs it.
+;;
+;; README "Robotics premise": a document-courier robot handles physical
+;; credential-mailing fulfillment for a professional association (ISIC 9412),
+;; gated by the Association Governance Governor. Its physical work is
+;; laminating members' PVC credential cards before they are mailed, and
+;; lifting boxes of sealed credential mailers into the outgoing-post bin.
+;;
+;; Every number without a cited source is marked `estimate` in its :basis.
+;; Replacing an estimate with a sourced value is this bot's growth work.
+{:physics/schema "itonami.physical-ai.spec.v1"
+ :repo "cloud-itonami/cloud-itonami-isic-9412"
+ :cases
+ [{:id :credential-card-lamination
+   :kind :thermal
+   :procedure "robot feeds a member's PVC credential card between the laminator's heated rollers; the card is heated from both faces, so half its thickness is modelled and the back face is the mid-plane"
+   :params {:thickness-m 0.00038 :conductivity-w-mk 0.16 :density-kg-m3 1380.0 :specific-heat-j-kgk 1000.0
+            :t0-c 25.0 :h-front-w-m2k 400.0 :h-back-w-m2k 0.0
+            :threshold-c 100.0 :duration-s 60.0 :nodes 11}
+   :sweep {:param :t-hot-c :values [110.0 120.0 130.0 140.0 150.0]}
+   :quantity :time-to-threshold-s
+   :limit {:max 5.0 :basis "estimate: card core must reach the 100 C bonding temperature within the ~5 s it spends in the heated roller zone; 0.38 mm is half the ISO/IEC 7810 ID-1 card thickness (0.76 mm), PVC properties and roller contact conductance are estimates"}
+   :boundary {:lo 101.0 :hi 200.0}}
+  {:id :mailer-box-into-post-bin
+   :kind :manipulator
+   :procedure "arm lifts a box of sealed credential mailers from the robot deck over the rim into the outgoing-post bin"
+   :params {:l1-m 0.45 :l2-m 0.40 :m1-kg 4.0 :m2-kg 3.0
+            :from [0.50 0.05] :to [0.30 0.70] :duration-s 2.5 :steps 500}
+   :sweep {:param :payload-kg :values [2.0 5.0 8.0 11.0 14.0]}
+   :quantity :peak-tau1-nm
+   :limit {:max 90.0 :basis "estimate: continuous shoulder torque of a 7 kg-class collaborative arm"}
+   :boundary {:lo 0.5 :hi 30.0}}]}
